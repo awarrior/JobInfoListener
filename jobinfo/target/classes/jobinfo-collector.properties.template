@@ -1,0 +1,11 @@
+## 事件容量限制
+event.queue.length=2000
+## 事件出队超时
+event.queue.poll.timeout=2000
+## 事件入队超时
+event.queue.offer.timeout=2000
+## 事件入队重试次数
+event.queue.offer.try=3
+
+## 数据存储键值容量限制
+data.map.limit=10000

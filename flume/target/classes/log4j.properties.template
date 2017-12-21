@@ -1,0 +1,27 @@
+log4j.rootLogger=INFO, FailOver
+
+### flume ###
+log4j.appender.FailOver=org.apache.flume.clients.log4jappender.FailoverLog4jAppender
+log4j.appender.FailOver.layout=org.apache.log4j.PatternLayout
+log4j.appender.FailOver.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n
+## 目标flume源
+log4j.appender.FailOver.hosts=192.168.56.101:45678 192.168.56.102:45678
+## 重试次数
+log4j.appender.FailOver.maxAttempts=20
+## 超时时间（毫秒）
+log4j.appender.FailOver.connectTimeout=3000
+log4j.appender.FailOver.requestTimeout=3000
+
+### flume ###
+log4j.appender.flume=org.apache.flume.clients.log4jappender.Log4jAppender
+log4j.appender.flume.Hostname=192.168.56.101
+log4j.appender.flume.Port=55555
+log4j.appender.flume.layout=org.apache.log4j.PatternLayout
+log4j.appender.flume.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n
+
+### stdout ###
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Threshold=INFO
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n

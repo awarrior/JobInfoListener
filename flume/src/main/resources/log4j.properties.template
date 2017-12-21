@@ -1,0 +1,32 @@
+log4j.rootLogger=INFO, console
+
+log4j.logger.com.paic.spark.listener.JobInfoListener=INFO, console
+log4j.additivity.com.paic.spark.listener.JobInfoListener=false
+log4j.logger.com.paic.spark.listener.JobInfoListener.info=INFO, failover
+log4j.additivity.com.paic.spark.listener.JobInfoListener.info=false
+
+### flume ###
+log4j.appender.failover=org.apache.flume.clients.log4jappender.FailoverLog4jAppender
+log4j.appender.failover.layout=org.apache.log4j.PatternLayout
+log4j.appender.failover.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n
+## 目标flume源
+log4j.appender.failover.hosts=192.168.56.101:55555 192.168.56.101:55556
+## 重试次数
+log4j.appender.failover.maxAttempts=20
+## 超时时间（毫秒）
+log4j.appender.failover.connectTimeout=3000
+log4j.appender.failover.requestTimeout=3000
+
+### flume ###
+log4j.appender.flume=org.apache.flume.clients.log4jappender.Log4jAppender
+log4j.appender.flume.Hostname=192.168.56.101
+log4j.appender.flume.Port=55555
+log4j.appender.flume.layout=org.apache.log4j.PatternLayout
+log4j.appender.flume.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n
+
+### stdout ###
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.Threshold=INFO
+log4j.appender.console.Target=System.out
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n
